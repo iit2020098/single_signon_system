@@ -24,7 +24,7 @@ export const Signup = () => {
       navigate("/Success");
     }
     else navigate("/FirstVisit")}
-  }, []);
+  }, [navigate]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
