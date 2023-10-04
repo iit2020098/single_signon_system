@@ -31,7 +31,7 @@ export const Signin = (props) => {
       console.log(formData);
   
       // Send a POST request to your backend API for user login
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch("https://test-syuq.onrender.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export const Signin = (props) => {
 
   const handleGitHubSignin = (e) => {
     e.preventDefault();
-    window.location.href = "http://localhost:5000/auth/github";
+    window.location.href = "https://test-syuq.onrender.com/auth/github";
 
   };
   //   try {
@@ -110,7 +110,7 @@ export const Signin = (props) => {
 
   const handleGoogleSignin = (e) => {
     e.preventDefault();
-    window.location.href = "http://localhost:5000/auth/google";
+    window.location.href = "https://test-syuq.onrender.com/auth/google";
   };
 
   return (
