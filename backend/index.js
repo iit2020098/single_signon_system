@@ -146,7 +146,7 @@ app.get('/auth/github',
   });
 
 app.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/Signin' }),
+  passport.authenticate('github', { failureRedirect: `${process.env.frontend_url}/Signin` }),
   function(req, res) {
     const user = `user=${JSON.stringify(req.user)}`;
     const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
