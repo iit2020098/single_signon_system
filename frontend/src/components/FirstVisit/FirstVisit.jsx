@@ -115,7 +115,7 @@ export const FirstVisit = () => {
     const user=getCookie("user");
     console.log(user);
     try {
-      const response = await fetch("http://localhost:5000/api/update", {
+      const response = await fetch("https://test-syuq.onrender.com/api/update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
