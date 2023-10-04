@@ -51,7 +51,7 @@ export const Signup = () => {
       }
   
       // Send a POST request to your backend API
-      const response = await fetch('http://localhost:5000/api/signup', {
+      const response = await fetch('https://test-syuq.onrender.com/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,13 +79,13 @@ export const Signup = () => {
   
   const handleGitHubSignup = (e) => {
     e.preventDefault();
-    window.location.href = "http://localhost:5000/auth/github";
+    window.location.href = "https://test-syuq.onrender.com/auth/github";
     
   };
 
   const handleGoogleSignup = (e) => {
     e.preventDefault();
-    window.location.href = "http://localhost:5000/auth/google";
+    window.location.href = "https://test-syuq.onrender.com/auth/google";
   };
    
   return (
