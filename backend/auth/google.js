@@ -24,7 +24,7 @@ function initializeGoogleStrategy() {
             firstname: profile.name.givenName ,
             lastname: profile.name.familyName ,
             password: null, 
-            email: profile.emails[0].value,
+            email: null,
           });
 
           console.log("New User object:", newUser);
