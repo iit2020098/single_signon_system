@@ -42,7 +42,6 @@ Secure SSO Login system with Google and Githun OAuth
     <ul>
         <li>Secure user authentication using JWT tokens.</li>
         <li>Social login options with GitHub and Google.</li>
-        
     </ul>
 
 <h2 id="#technologies">Technologies</h2>
