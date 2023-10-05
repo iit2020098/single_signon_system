@@ -2,7 +2,7 @@
 Secure SSO Login system with Google and Githun OAuth
 <p>Welcome to the Single Sign-On (SSO) System project! This project demonstrates a secure sign-in and sign-up
         system with social login options (GitHub and Google) using JWT authentication. </p>
-<h2>For live site</h2>
+<h2>For live site </h2>
 <p>Kindly follow the following link</p>
 <pre>https://xerocodee-test.netlify.app/</pre>
 <h2>Table of Contents</h2>
