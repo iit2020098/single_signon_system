@@ -84,6 +84,16 @@ Secure SSO Login system with Google and Githun OAuth
         </li>
         <li>Set up environment variables for backend by creating a <code>.env</code> file in the backend directory and adding the
             required configurations as follows</li>
+<pre>mongoURI=   your mongobd url
+port = 5000
+gitclientID= gitcliendidvalue
+gitclientSecret = gitclientSecretvalue
+gitcallbackURL = http://localhost:5000/auth/github/callback
+googleclientID= googleclientIDvalue
+googleclientSecret = googleclientSecretvalue
+googlecallbackURL = http://localhost:5000/auth/google/callback
+JWT_SECRET= secretkeyvalue
+frontend_url=http://localhost:3001</pre>
         <li>Start the frontend and backend servers:
             <pre># In the frontend directory
 npm start</pre>
