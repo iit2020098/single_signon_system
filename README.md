@@ -74,7 +74,7 @@ Secure SSO Login system with Google and Githun OAuth
 <h2 id="#getting-started">Getting Started</h2>
     <ol>
         <li>Get to following link for starting project locally 
-            <pre>git clone https://github.com/yourusername/sso_localrun</pre>
+            <pre>https://github.com/yourusername/sso_localrun</pre>
         </li>
       <li> Download the zip and extrat it</li>
         <li>Install dependencies for both the frontend and backend:
