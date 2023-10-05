@@ -1,5 +1,5 @@
 const config = {
-    backend_url: `http://localhost:5000`,
+    backend_url: `https://test-syuq.onrender.com`,
   };
   
   export default config;
