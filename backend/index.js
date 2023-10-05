@@ -148,13 +148,24 @@ app.get('/auth/github',
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: `${process.env.frontend_url}/Signin` }),
   function(req, res) {
-    const user = `user=${JSON.stringify(req.user)}`;
-    const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // const user = `user=${JSON.stringify(req.user)}`;
+    // const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // console.log("we are in github callback")
+    
+    // var s=req.cookies.userid;
+    
+    //   res.cookie("userid", s)
+    //   res.cookie("firstname", req.user.firstname)
+    //   res.cookie("token", token)
+
+    // const user = `user=${JSON.stringify(req.user)}`;
+    const userId = req.user._id;
+    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
     console.log("we are in github callback")
     
-    var s=req.cookies.userid;
+    // var s=req.cookies.userid;
     
-      res.cookie("userid", s)
+      res.cookie("userid", userId);
       res.cookie("firstname", req.user.firstname)
       res.cookie("token", token)
     if(req.user.userType===undefined)
