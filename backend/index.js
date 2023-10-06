@@ -17,16 +17,16 @@ var cookieParser = require('cookie-parser');
 // Generate a session secret
 const sessionSecret = crypto.randomBytes(64).toString('hex');
 // Set a cookie with a name, value, and optional attributes
-function setCookie(name, value) {
-  // Calculate the expiration date for 1 hour from now
-  const expirationDate = new Date();
-  expirationDate.setTime(expirationDate.getTime() + (1 * 60 * 60 * 1000)); // 1 hour in milliseconds
-
-  // Create the cookie string with the expiration date
-  const cookieString = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/`;
-
-  // Set the cookie
-  document.cookie = cookieString;
+function getid(objectIdString) {
+  const startIndex = objectIdString.indexOf('"') + 1;
+  const endIndex = objectIdString.lastIndexOf('"');
+  
+  if (startIndex !== -1 && endIndex !== -1) {
+    const extractedCode = objectIdString.substring(startIndex, endIndex);
+    return extractedCode.replace(/"/g, ''); // Remove all double quotes
+  } else {
+    throw new Error('Invalid ObjectId string format');
+  }
 }
 
 
@@ -124,12 +124,12 @@ app.get('/auth/google/callback',
     console.log(req.cookies);
     const user = `user=${JSON.stringify(req.user)}`;
     const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+    const id=getid(JSON.stringify(req.user._id))
     const use=User.findOne({googleid:req.id})
     console.log(use)
     var s=req.cookies.userid;
-    console.log("userid:-",s)
-    res.cookie("userid", s)
+    console.log("userid:-",id)
+    res.cookie("userid", id)
       res.cookie("firstname", (req.user.firstname===undefined)?(""):req.user.firstname)
       res.cookie("token", token)
     if(req.user.userType===undefined)
