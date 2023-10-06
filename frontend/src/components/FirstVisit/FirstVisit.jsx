@@ -3,6 +3,12 @@ import "./FirstVisit.css";
 import logo from "./logo.png";
 import { useNavigate } from "react-router-dom"; // Import useHistory from React Router
 import config from '../../config';
+import { BrowserRouter as  Route } from "react-router-dom";
+// import Signup from './components/Signup/Signup';
+import Signin from '../Signin/Signin'; // Assuming Signin is a separate component
+// import FirstVisit from './components/FirstVisit/FirstVisit';
+import Success from '../Success/Success';
+
 export const FirstVisit = () => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -140,6 +146,17 @@ export const FirstVisit = () => {
   
   return (
     <div className="background">
+      (getCookie("userid")) ? (
+            <>
+              <Route path="/FirstVisit" element={<FirstVisit />} />
+              <Route path="/Success" element={<Success/>} />
+            </>
+          ) : (
+            <>
+              <Route path="/FirstVisit" element={<Signin />} />
+              <Route path="/Success" element={<Signin/>}/>
+            </>
+          )
       <div className="containerfv">
         <img src={logo} alt="Logo" className="logo-small" />
         <h5>Choose from the following</h5>
