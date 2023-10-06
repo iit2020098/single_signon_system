@@ -1,5 +1,8 @@
-
+/* Base styles for the container */
 .container {
+  max-width: 100%;
+  padding: 20px; /* Add padding to maintain spacing */
+  box-sizing: border-box; /* Include padding in width calculation */
   display: flex;
   margin: auto;
   flex-direction: row;
@@ -8,12 +11,10 @@
   border-radius: 25px;
   overflow: hidden;
   background-color: white;
-  max-width: none;
-  width: 90%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
-/* Apply styles to the background */
 
+/* Apply styles to the background */
 .backgroundimg {
   background-image: url('background.png');
   background-color: rgba(0, 0, 255, 0.25); /* Adjust the opacity as needed */
@@ -28,115 +29,67 @@
   margin: 0;
   padding: 0;
 }
-/* Style the container within the .background */
-.background .container {
+
+/* Add responsive adjustments */
+/* Media query for screens larger than or equal to 1080px */
+@media (min-width: 1080px) {
+  /* Set the width of both left and right sections to 50% */
+  .left-section,
+  .right-section {
+    width: 50%;
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1080px) {
+  /* Hide the right section on screens smaller than 1080px */
+  .right-section {
+    display: none;
+  }
+
+  /* Adjust the left section width on smaller screens */
+  .left-section {
+    width: 100%;
+    border-bottom-left-radius: 0; /* Remove border radius on the bottom left */
+    padding: 20px; /* Add padding to space out the content equally */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
+}
+
+/* Style for the GitHub button */
+.github-button {
   display: flex;
-  margin: auto;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-radius: 25px;
-  overflow: hidden;
-  background-color: white;
-  max-width: none;
-  width: 90%;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  background-color: black !important; /* Set the background color to black */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
-v
-.h3{
-  align-items: center;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-/* Style the container */
 
+
+.github-button:hover {
+  background-color: #000; /* Darker shade of black on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Logo styles */
 .logo-small {
-  max-width: 40%;
-  height: 30%;
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
   margin: 0 auto; /* Center the logo horizontally */
 }
 
-/* Style the "Hello!" heading */
-.h2 {
-  font-size: 36px; /* Make the font size larger */
-  font-weight: bold;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+/* Heading styles */
+.h2, .h5 {
+  text-align: center; /* Center-align headings */
 }
 
-/* Style the "Create Your Account" section */
-.h5{
-  font-size: 20px; /* Make the font size larger */
-  font-weight: bold;
-  margin-top: 20px; /* Add some spacing */
-}
-
-
-.left-section {
-  flex: 1;
-  padding: 10px;
-  align-items: center;
-  align-content: center;
-  border-bottom-left-radius: 25px;
-  display: flex; /* Add this line to make the left section a flex container */
-  flex-direction: column; /* Display children vertically in the left section */
-  justify-content: center; /* Center vertically */
-}
-
-
-.right-section {
-  flex: 1;
-  height: min-content;
-  /* background-image: url('side-img.svg'); */
-  margin: auto;
-  align-self: auto;
-  image-resolution: 50%;
-  position: relative;
-  display: flex; /* Add this line to make the right section a flex container */
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
-}
-
-/* .left-section {
-  flex: 1;
-  padding: 10px;
-  align-items: center;
-  align-content: center;
-  border-bottom-left-radius: 25px;
-}
-
-.right-section {
-  flex: 1;
-  height: min-content;
-  background-image: url('side-img.svg');
-  margin:auto;
-  align-self: auto;
-  image-resolution: 50%;
-  position: relative;
-} */
-
-/* Style the vector image */
-.vector {
-  mask-position: bottom,right;
-  bottom: 0;
-  right: 0;
-}
-
-/* Style the form */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin: auto;
-}
-.input{
-  width: 100%;
-  margin: auto;
-  align-self: auto;
-}
-
-
-
-/* Style input sections */
+/* Input field styles */
 .input-section {
   width: 100%;
   margin: 5px auto;
@@ -148,24 +101,25 @@ form {
   background-color: #f9f9f9;
 }
 
-/* Style the input labels */
 .input-section label {
   width: 30%;
   margin-right: 10px;
   font-weight: bold;
 }
 
-/* Style the input fields */
 .input-section input {
-  flex: 1;
+  width: 100%;
+  max-width: 300px; /* Limit maximum width as needed */
+  margin: 5px auto;
   padding: 10px;
   border: none;
   border-radius: 5px;
   background-color: transparent;
   outline: none;
+  text-align: center; /* Center-align input text */
 }
 
-/* Style the sign-up button */
+/* Button styles */
 .signup-button {
   background-color: blue;
   color: white;
@@ -178,27 +132,21 @@ form {
   width: 60%;
 }
 
-
-/* Style the logo */
-.social-buttons{
+.social-buttons {
   display: flex;
-  flex-direction: row;
-  width: 70%;
-  margin: auto;
-  justify-content: space-between;
-  
-}
-/* Style for the Google button */
-.google-button {
-  display: flex;
+  flex-direction: column; /* Stack buttons on smaller screens */
   align-items: center;
-  justify-content: center;
+}
+
+.google-button, .github-button {
+  width: 100%; /* Make buttons full width */
+  max-width: 300px; /* Limit maximum width as needed */
+  margin: 10px 0;
   background-color: #1168f4; /* Google's blue */
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: 10px 0;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
 }
@@ -208,27 +156,9 @@ form {
   transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
-/* Style for the GitHub button */
-.github-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #333; /* GitHub's black */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin: 10px 0;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
 
-.github-button:hover {
-  background-color: #000; /* Darker shade of black on hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
-}
 
-/* Style for social icons */
+/* Social icon styles (if needed) */
 .social-icon {
   width: 20px; /* Adjust the size as needed */
   height: 20px; /* Adjust the size as needed */
