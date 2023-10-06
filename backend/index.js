@@ -124,7 +124,9 @@ app.get('/auth/google/callback',
     console.log(req.cookies);
     const user = `user=${JSON.stringify(req.user)}`;
     const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    
+
+    const use=User.findOne({googleid:req.id})
+    console.log(use)
     var s=req.cookies.userid;
     console.log("userid:-",s)
     res.cookie("userid", s)
