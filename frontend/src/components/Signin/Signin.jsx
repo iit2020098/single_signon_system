@@ -2,11 +2,23 @@ import React, { useState } from "react";
 import "./Signin.css";
 import logo from "./logo.png";
 import si from "./side-img.svg";
-import {  useNavigate } from "react-router-dom";
-import config from '../../config';
-
+import { useNavigate } from "react-router-dom";
+import config from "../../config";
+import { BrowserRouter as Route,Routes } from "react-router-dom";
+import FirstVisit from "../FirstVisit/FirstVisit";
+import Success from "../Success/Success";
 export const Signin = (props) => {
   const navigate = useNavigate();
+  function getCookie(name) {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(`${name}=`)) {
+        return cookie.substring(name.length + 1);
+      }
+    }
+    return null; // Cookie not found
+  }
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,7 +42,7 @@ export const Signin = (props) => {
     try {
       // Assuming formData contains the necessary login data
       console.log(formData);
-  
+
       // Send a POST request to your backend API for user login
       const response = await fetch(`${config.backend_url}/api/login`, {
         method: "POST",
@@ -39,22 +51,24 @@ export const Signin = (props) => {
         },
         body: JSON.stringify(formData), // Send the user login data
       });
-  
+
       console.log(response);
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Data:-",data);
+        console.log("Data:-", data);
         const expirationTime = new Date();
         expirationTime.setTime(expirationTime.getTime() + 60 * 60 * 1000); // 1 hour in milliseconds
-        document.cookie = `token=${data.token}; expires=${expirationTime.toUTCString()}; path=/;`;
+        document.cookie = `token=${
+          data.token
+        }; expires=${expirationTime.toUTCString()}; path=/;`;
         console.log(data.token);
 
-        setCookie("userid",data.user._id); 
-        setCookie("firstname",data.user.firstname); 
-        console.log("USer:-",data.user._id);
+        setCookie("userid", data.user._id);
+        setCookie("firstname", data.user.firstname);
+        console.log("USer:-", data.user._id);
         alert("Sign in sucessful...!!! \n Please Refresh the page.");
-        if(data.user.userType) {
+        if (data.user.userType) {
           navigate(`/Success`);
         } else {
           navigate(`/FirstVisit`);
@@ -67,15 +81,11 @@ export const Signin = (props) => {
       alert("An error occurred. Please try again later.");
     }
   };
-  
-  
 
   const handleGitHubSignin = (e) => {
     e.preventDefault();
     window.location.href = `${config.backend_url}/auth/github`;
-
   };
-  
 
   const handleGoogleSignin = (e) => {
     e.preventDefault();
@@ -83,52 +93,67 @@ export const Signin = (props) => {
   };
 
   return (
-    <div className="backgroundimg">
-      <div className="container">
-        <div className="left-section">
-          <form>
-            <img src={logo} alt="Logo" className="logo-small" />
+    <>
+      <div className="backgroundimg">
+        <div className="container">
+          <div className="left-section">
+            <form>
+              <img src={logo} alt="Logo" className="logo-small" />
 
-            <h5>Login to your Account</h5>
+              <h5>Login to your Account</h5>
 
-            <div className="input-section">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Id"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="input-section">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={handleInputChange}
-              />
-            </div>
-            <button className="signup-button" onClick={handleSignIn}>
-              Log In
-            </button>
-            <h4>OR</h4>
-            <div className="social-buttons">
-              <button className="google-button" onClick={handleGoogleSignin}>
-                Sign in with Google
+              <div className="input-section">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Id"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="input-section">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <button className="signup-button" onClick={handleSignIn}>
+                Log In
               </button>
-              <button className="github-button" onClick={handleGitHubSignin}>
-                Sign in with GitHub
-              </button>
-            </div>
-            <p className="login-link">
-              Don't have an Account? <a href="/">SIGN UP</a>
-            </p>
-          </form>
-        </div>
-        <div className="right-section">
-          <img src={si} alt="" />
+              <h4>OR</h4>
+              <div className="social-buttons">
+                <button className="google-button" onClick={handleGoogleSignin}>
+                  Sign in with Google
+                </button>
+                <button className="github-button" onClick={handleGitHubSignin}>
+                  Sign in with GitHub
+                </button>
+              </div>
+              <p className="login-link">
+                Don't have an Account? <a href="/">SIGN UP</a>
+              </p>
+            </form>
+          </div>
+          <div className="right-section">
+            <img src={si} alt="" />
+          </div>
         </div>
       </div>
-    </div>
+      <Routes>
+        {getCookie("userid") ? ( // Check if the "userid" cookie is set
+          <>
+            <Route path="/FirstVisit" element={<FirstVisit />} />
+            <Route path="/Success" element={<Success />} />
+          </>
+        ) : (
+          <>
+            <Route path="/FirstVisit" element={<Signin />} />
+            <Route path="/Success" element={<Signin />} />
+          </>
+        )}
+      </Routes>
+    </>
   );
 };
 export default Signin;
