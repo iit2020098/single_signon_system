@@ -150,28 +150,24 @@ app.get('/auth/github/callback',
   function(req, res) {
     // const user = `user=${JSON.stringify(req.user)}`;
     // const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // console.log("we are in github callback")
+    
+    // var s=req.cookies.userid;
+    
+    //   res.cookie("userid", s)
+    //   res.cookie("firstname", req.user.firstname)
+    //   res.cookie("token", token)
+
+    // const user = `user=${JSON.stringify(req.user)}`;
+    const userId = req.user._id;
+    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
     console.log("we are in github callback")
     
     // var s=req.cookies.userid;
-    // const user=
-    console.log(req);
-    const user = `user=${JSON.stringify(req.user)}`;
-    var s=req.cookies.userid;
-    console.log(s,req.user.firstname,token);
-      res.cookie("userid", s)
+    
+      res.cookie("userid", userId);
       res.cookie("firstname", req.user.firstname)
       res.cookie("token", token)
-
-    // const user = `user=${JSON.stringify(req.user)}`;
-    // const userId = req.user._id;
-    // const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    // console.log("we are in github callback")
-    
-    
-    
-      // res.cookie("userid", userId);
-      // res.cookie("firstname", req.user.firstname)
-      // res.cookie("token", token)
     if(req.user.userType===undefined)
     {  
       
