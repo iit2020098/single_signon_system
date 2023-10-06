@@ -164,10 +164,10 @@ app.get('/auth/github/callback',
     const userId = req.user._id;
     const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
     console.log("we are in github callback")
-    
+    const id=getid(JSON.stringify(req.user._id))
     // var s=req.cookies.userid;
     
-      res.cookie("userid", userId);
+      res.cookie("userid", id);
       res.cookie("firstname", req.user.firstname)
       res.cookie("token", token)
     if(req.user.userType===undefined)
