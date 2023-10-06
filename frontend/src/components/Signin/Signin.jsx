@@ -4,9 +4,7 @@ import logo from "./logo.png";
 import si from "./side-img.svg";
 import {  useNavigate } from "react-router-dom";
 import config from '../../config';
-import { BrowserRouter as  Route } from "react-router-dom";
-import Signin from '../Signin/Signin'; // Assuming Signin is a separate component
-import Success from '../Success/Success';
+
 export const Signin = (props) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -18,16 +16,6 @@ export const Signin = (props) => {
     expirationDate.setTime(expirationDate.getTime() + hours * 60 * 60 * 1000); // Convert hours to milliseconds
     const expires = "expires=" + expirationDate.toUTCString();
     document.cookie = `${name}=${value}; ${expires}; path=/`;
-  }
-  function getCookie(name) {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(`${name}=`)) {
-        return cookie.substring(name.length + 1);
-      }
-    }
-    return null; // Cookie not found
   }
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -96,17 +84,6 @@ export const Signin = (props) => {
 
   return (
     <div className="backgroundimg">
-      (getCookie("userid")) ? (
-            <>
-              <Route path="/FirstVisit" element={<FirstVisit />} />
-              <Route path="/Success" element={<Success/>} />
-            </>
-          ) : (
-            <>
-              <Route path="/FirstVisit" element={<Signin />} />
-              <Route path="/Success" element={<Signin/>}/>
-            </>
-          )
       <div className="container">
         <div className="left-section">
           <form>
