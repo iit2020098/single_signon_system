@@ -121,13 +121,13 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: `${process.env.frontend_url}/Signin` }),
   function(req, res) {
     console.log("We are in google call back funection")
-    console.log(req.cookies);
+    // console.log(req.cookies);
     const user = `user=${JSON.stringify(req.user)}`;
     const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
     const id=getid(JSON.stringify(req.user._id))
     const use=User.findOne({googleid:req.id})
-    console.log(use)
-    var s=req.cookies.userid;
+    // console.log(use)
+    // var s=req.cookies.userid;
     console.log("userid:-",id)
     res.cookie("userid", id)
       res.cookie("firstname", (req.user.firstname===undefined)?(""):req.user.firstname)
